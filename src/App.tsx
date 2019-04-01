@@ -13,7 +13,6 @@ class App extends React.Component {
 
   componentDidMount() {
     const authorization = Auth.getAuthorization();
-    debugger;
 
     if (authorization) {
       const now = new Date().valueOf();
