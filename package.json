@@ -1,0 +1,34 @@
+{
+  "name": "testcafe-redirect",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "jwt-decode": "^2.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "test:e2e": "testcafe chrome e2e --hostname 127.0.0.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@types/jwt-decode": "^2.2.1",
+    "@types/react": "^16.8.10",
+    "@types/react-dom": "^16.8.3",
+    "testcafe": "^1.1.0",
+    "typescript": "^3.4.1"
+  }
+}
