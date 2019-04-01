@@ -10,15 +10,6 @@ type Authorization = {
 };
 
 class Auth {
-  static getAuthorizationHeader = () => {
-    return "Bearer " + Auth.getAccessToken();
-  };
-
-  static getAccessToken = (): string => {
-    const authorization = Auth.getAuthorization();
-    return authorization ? authorization.access_token : "";
-  };
-
   static getAuthorization = (): Authorization | undefined => {
     return LocalStorage.getStorageKeyItem(AUTH_STORAGE_KEY_ITEM);
   };
