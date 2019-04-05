@@ -28,7 +28,7 @@
     "@types/jwt-decode": "^2.2.1",
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
-    "testcafe": "^1.1.0",
+    "testcafe": "^1.1.1",
     "typescript": "^3.4.1"
   }
 }

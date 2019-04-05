@@ -1,8 +1,4 @@
-import "./App.css";
-
 import React from "react";
-
-import Auth from "./Auth";
 
 const initialState = Object.freeze({ loggedIn: false, tokenChecked: false });
 
@@ -12,16 +8,16 @@ class App extends React.Component {
   readonly state: State = initialState;
 
   componentDidMount() {
-    const authorization = Auth.getAuthorization();
+    const authorization = JSON.parse(localStorage.getItem("app") || "{}");
 
-    if (authorization) {
+    if (authorization.expires_in) {
       const now = new Date().valueOf();
       const expiration = authorization.expires_in;
       if (now < expiration) {
         this.setState({ loggedIn: true, tokenChecked: true });
         return;
       } else {
-        Auth.deleteAuthorization();
+        localStorage.removeItem("app");
       }
     }
     this.setState({ tokenChecked: true });
@@ -35,7 +31,7 @@ class App extends React.Component {
 
     if (tokenChecked && !loggedIn) {
       window.location.assign(
-        "https://test.sentinel-hub.com/oauth/auth?client_id=6a5f92a1-06e4-4e77-aab7-0281b3b69012&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FoauthCallback.html&scope=&response_type=token&state=%252F"
+        "https://test.sentinel-hub.com/oauth/auth?client_id=6a5f92a1-06e4-4e77-aab7-0281b3b69012&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2FoauthCallback.html&scope=&response_type=token&state="
       );
       return <div />;
     }

@@ -1,8 +1,6 @@
 <html>
   <head>
     <script type="text/javascript">
-      var LOCAL_STORAGE_NAME = "app";
-
       function parseQueryString(queryString) {
         return queryString.split("&").reduce((acc, keyValue) => {
           const [key, value] = keyValue.split("=");
@@ -12,27 +10,14 @@
       }
 
       let auth = parseQueryString(window.location.hash.replace(/^#/, ""));
+
       if (auth.access_token !== undefined && auth.expires_in !== undefined) {
         auth.expires_in =
           new Date().valueOf() + parseInt(auth.expires_in, 10) * 1000;
-        var currentItem = JSON.parse(
-          localStorage.getItem(LOCAL_STORAGE_NAME) || "{}"
-        );
-        localStorage.setItem(
-          LOCAL_STORAGE_NAME,
-          JSON.stringify(Object.assign({}, { auth }, currentItem))
-        );
+
+        localStorage.setItem("app", JSON.stringify(auth));
         var redirectUrl = window.location.href.split("oauthCallback")[0];
-        if (auth.state) {
-          try {
-            redirectUrl =
-              redirectUrl +
-              "#" +
-              decodeURIComponent(decodeURIComponent(auth.state));
-          } catch (e) {}
-        }
-        debugger;
-        location.assign(redirectUrl);
+        location.replace(redirectUrl);
       }
     </script>
   </head>
